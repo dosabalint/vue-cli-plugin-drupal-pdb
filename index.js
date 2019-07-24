@@ -15,15 +15,17 @@ module.exports = (api, options) => {
   })
 
   api.chainWebpack(config => {
-    // Exclude the Vue library since Drupal is already adding it globally.
-    const mode = config.store.get('mode')
-    if (mode !== 'development') {
-      config.externals({
-        ...config.get('externals'),
-        'vue': 'Vue',
-        'vuex': 'Vuex',
-        'jquery': 'jQuery',
-      })
+    if (process.env.drupal_pdb) {
+      // Exclude the Vue library since Drupal is already adding it globally.
+      const mode = config.store.get('mode');
+      if (mode !== 'development') {
+        config.externals({
+          ...config.get('externals'),
+          vue: 'Vue',
+          vuex: 'Vuex',
+          jquery: 'jQuery',
+        })
+      }
     }
   })
 
