@@ -33,7 +33,7 @@ module.exports = (api, options) => {
 
 module.exports.singleInstances = () => {
   let pages = {}
-  const files = glob.sync('./blocks/**/main.js')
+  const files = glob.sync('./blocks/**/main.@(ts|js)')
 
   files.forEach(file => {
     const regex = /blocks\/([^/]+)\/main/
