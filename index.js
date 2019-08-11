@@ -15,8 +15,8 @@ module.exports = (api, options) => {
   })
 
   api.chainWebpack(config => {
-    if (process.env.drupal_pdb) {
-      // Exclude the Vue library since Drupal is already adding it globally.
+    // Exclude the Vue library since Drupal is already adding it globally.
+    if (process.env.VUE_APP_DRUPAL_PDB) {
       const mode = config.store.get('mode');
       if (mode !== 'development') {
         config.externals({
